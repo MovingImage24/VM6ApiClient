@@ -1,0 +1,30 @@
+{
+  "name": "movingimage/vm6-api-client",
+  "description": "API client library for the Video Manager 6 REST API",
+  "type": "library",
+  "license": "BSD 3-Clause License",
+  "authors": [
+    {
+      "name": "Ruben Knol",
+      "email": "ruben.knol@movingimage.com"
+    }
+  ],
+  "require": {
+    "php": "^5.5 || ^7.0",
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^1.12",
+    "phpunit/phpunit": ">=4.5"
+  },
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "MovingImage\\Client\\VM6\\": "lib"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MovingImage\\Test\\Client\\VM6": "tests/"
+    }
+  }
+}
