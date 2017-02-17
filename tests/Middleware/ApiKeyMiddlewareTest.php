@@ -30,6 +30,7 @@ class ApiKeyMiddlewareTest extends \PHPUnit_Framework_TestCase
     {
         if (version_compare(ClientInterface::VERSION, '6.0', '<')) {
             $this->markTestSkipped('Skipping tests for Guzzle6ApiClient when Guzzle ~5.0 is installed');
+
             return;
         }
 

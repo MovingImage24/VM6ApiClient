@@ -3,7 +3,7 @@
 namespace MovingImage\Client\VM6;
 
 /**
- * Class Exception
+ * Class Exception.
  *
  * @author Ruben Knol <ruben.knol@movingimage.com>
  */

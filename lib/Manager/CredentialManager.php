@@ -23,11 +23,10 @@ class CredentialManager implements LoggerAwareInterface
     /**
      * CredentialManager constructor.
      *
-     * @param ApiCredentials  $credentials
+     * @param ApiCredentials $credentials
      */
-    public function __construct(
-        ApiCredentials $credentials
-    ) {
+    public function __construct(ApiCredentials $credentials)
+    {
         $this->credentials = $credentials;
     }
 
