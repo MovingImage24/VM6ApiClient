@@ -10,6 +10,11 @@ use MovingImage\Client\VM6\Interfaces\ApiClientFactoryInterface;
 use MovingImage\Client\VM6\Manager\CredentialManager;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Class AbstractApiClientFactory.
+ *
+ * @author Ruben Knol <ruben.knol@movingimage.com>
+ */
 abstract class AbstractApiClientFactory implements ApiClientFactoryInterface
 {
     /**

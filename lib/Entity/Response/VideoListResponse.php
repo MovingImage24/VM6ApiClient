@@ -3,7 +3,13 @@
 namespace MovingImage\Client\VM6\Entity\Response;
 
 use JMS\Serializer\Annotation\Type;
+use MovingImage\Client\VM6\Entity\Video;
 
+/**
+ * Class VideoListResponse.
+ *
+ * @author Ruben Knol <ruben.knol@movingimage.com>
+ */
 class VideoListResponse
 {
     /**
@@ -11,6 +17,9 @@ class VideoListResponse
      */
     private $videolist;
 
+    /**
+     * @return Video[]
+     */
     public function getVideos()
     {
         return $this->videolist;

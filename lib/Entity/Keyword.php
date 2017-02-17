@@ -4,6 +4,11 @@ namespace MovingImage\Client\VM6\Entity;
 
 use MovingImage\Meta\Interfaces\KeywordInterface;
 
+/**
+ * Class Keyword.
+ *
+ * @author Ruben Knol <ruben.knol@movingimage.com>
+ */
 class Keyword implements KeywordInterface
 {
     /**

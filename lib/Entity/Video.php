@@ -5,6 +5,11 @@ namespace MovingImage\Client\VM6\Entity;
 use MovingImage\Meta\Interfaces\VideoInterface;
 use JMS\Serializer\Annotation\Type;
 
+/**
+ * Class Video.
+ *
+ * @author Ruben Knol <ruben.knol@movingimage.com>
+ */
 class Video implements VideoInterface
 {
     /**

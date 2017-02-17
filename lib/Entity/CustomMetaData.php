@@ -4,6 +4,11 @@ namespace MovingImage\Client\VM6\Entity;
 
 use MovingImage\Meta\Interfaces\CustomMetaDataInterface;
 
+/**
+ * Class CustomMetaData.
+ *
+ * @author Ruben Knol <ruben.knol@movingimage.com>
+ */
 class CustomMetaData implements CustomMetaDataInterface
 {
     /**

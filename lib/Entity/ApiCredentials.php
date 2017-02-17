@@ -2,12 +2,35 @@
 
 namespace MovingImage\Client\VM6\Entity;
 
+/**
+ * Class ApiCredentials.
+ *
+ * @author Ruben Knol <ruben.knol@movingimage.com>
+ */
 class ApiCredentials
 {
+    /**
+     * @var string
+     */
     private $apiKey;
+
+    /**
+     * @var string
+     */
     private $developerKey;
+
+    /**
+     * @var string
+     */
     private $clientKey;
 
+    /**
+     * ApiCredentials constructor.
+     *
+     * @param string $apiKey
+     * @param string $developerKey
+     * @param string $clientKey
+     */
     public function __construct($apiKey, $developerKey, $clientKey)
     {
         $this->apiKey = $apiKey;

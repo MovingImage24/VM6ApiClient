@@ -2,6 +2,11 @@
 
 namespace MovingImage\Client\VM6\Criteria;
 
+/**
+ * Class VideoQueryCriteria.
+ *
+ * @author Ruben Knol <ruben.knol@movingimage.com>
+ */
 class VideoQueryCriteria
 {
     /**
@@ -130,6 +135,9 @@ class VideoQueryCriteria
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getCriteriaData()
     {
         $criteriaData = [

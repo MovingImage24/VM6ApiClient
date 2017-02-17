@@ -4,6 +4,11 @@ namespace MovingImage\Client\VM6\Entity;
 
 use MovingImage\Meta\Interfaces\StillInterface;
 
+/**
+ * Class Still.
+ *
+ * @author Ruben Knol <ruben.knol@movingimage.com>
+ */
 class Still implements StillInterface
 {
     /**
