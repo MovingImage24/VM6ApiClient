@@ -7,7 +7,7 @@
 To install the API client, run the following command:
 
 ```
-composer require movingimage/vm6-api-client
+$ composer require movingimage/vm6-api-client
 ```
 
 ## Usage
