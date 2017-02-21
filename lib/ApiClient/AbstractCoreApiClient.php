@@ -68,7 +68,7 @@ abstract class AbstractCoreApiClient implements LoggerAwareInterface
         $logger = $this->getLogger();
 
         try {
-            $logger->info(sprintf('Making API %s request to %s', $method, $uri), [$uri]);
+            $logger->info(sprintf('Making API %s request to %s', $method, $uri), [$options]);
 
             /** @var ResponseInterface $response */
             $response = $this->_doRequest($method, $uri, $options);

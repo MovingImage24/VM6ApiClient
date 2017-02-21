@@ -145,7 +145,7 @@ class VideoQueryCriteria
         ];
 
         if (!empty($this->channels)) {
-            $criteriaData['rubic_list'] = implode(',', $this->channels);
+            $criteriaData['rubric_list'] = implode(',', $this->channels);
         }
 
         if (!is_null($this->limit)) {
