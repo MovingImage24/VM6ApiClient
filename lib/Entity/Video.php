@@ -165,6 +165,13 @@ class Video implements VideoInterface
     private $custom_data_field_10;
 
     /**
+     * @Type("integer")
+     *
+     * @var int
+     */
+    private $views;
+
+    /**
      * @var Still[]
      */
     private $stills;
@@ -316,5 +323,13 @@ class Video implements VideoInterface
         }
 
         return $this->customMetaDatas;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getViews()
+    {
+        return $this->views;
     }
 }
