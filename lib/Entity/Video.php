@@ -16,6 +16,7 @@ class Video implements VideoInterface
      * @const string
      */
     const STATUS_APPROVED = 3;
+    const STATUS_TOKEN_PROTECTED = 101;
 
     /**
      * @Type("integer")

@@ -6,6 +6,7 @@ use GuzzleHttp\ClientInterface;
 use JMS\Serializer\Serializer;
 use MovingImage\Client\VM6\Exception;
 use MovingImage\Client\VM6\Traits\LoggerAwareTrait;
+use MovingImage\Client\VM6\Util\UnlockTokenGenerator;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
 
@@ -29,17 +30,25 @@ abstract class AbstractCoreApiClient implements LoggerAwareInterface
     protected $serializer;
 
     /**
+     * @var UnlockTokenGenerator
+     */
+    protected $unlockTokenGenerator;
+
+    /**
      * ApiClient constructor.
      *
-     * @param ClientInterface $httpClient
-     * @param Serializer      $serializer
+     * @param ClientInterface      $httpClient
+     * @param Serializer           $serializer
+     * @param UnlockTokenGenerator $unlockTokenGenerator
      */
     public function __construct(
         ClientInterface $httpClient,
-        Serializer $serializer
+        Serializer $serializer,
+        UnlockTokenGenerator $unlockTokenGenerator = null
     ) {
         $this->httpClient = $httpClient;
         $this->serializer = $serializer;
+        $this->unlockTokenGenerator = $unlockTokenGenerator;
     }
 
     /**

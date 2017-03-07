@@ -6,6 +6,7 @@ use GuzzleHttp\ClientInterface;
 use JMS\Serializer\Serializer;
 use MovingImage\Client\VM6\Entity\ApiCredentials;
 use MovingImage\Client\VM6\Manager\CredentialManager;
+use MovingImage\Client\VM6\Util\UnlockTokenGenerator;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -39,6 +40,7 @@ interface ApiClientFactoryInterface
      *
      * @param ClientInterface      $httpClient
      * @param Serializer           $serializer
+     * @param UnlockTokenGenerator $unlockTokenGenerator
      * @param LoggerInterface|null $logger
      *
      * @return ApiClientInterface
@@ -46,16 +48,19 @@ interface ApiClientFactoryInterface
     public function create(
         ClientInterface $httpClient,
         Serializer $serializer,
+        UnlockTokenGenerator $unlockTokenGenerator = null,
         LoggerInterface $logger = null
     );
 
     /**
      * Abstraction to more simpler instantiate an API client.
      *
-     * @param string         $baseUri
-     * @param ApiCredentials $credentials
+     * @param string               $baseUri
+     * @param ApiCredentials       $credentials
+     * @param UnlockTokenGenerator $unlockTokenGenerator
+     * @param string               $signKey
      *
      * @return ApiClientInterface
      */
-    public function createSimple($baseUri, ApiCredentials $credentials);
+    public function createSimple($baseUri, ApiCredentials $credentials, $signKey = '');
 }

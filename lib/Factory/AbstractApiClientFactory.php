@@ -8,6 +8,7 @@ use JMS\Serializer\SerializerBuilder;
 use MovingImage\Client\VM6\Entity\ApiCredentials;
 use MovingImage\Client\VM6\Interfaces\ApiClientFactoryInterface;
 use MovingImage\Client\VM6\Manager\CredentialManager;
+use MovingImage\Client\VM6\Util\UnlockTokenGenerator;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -57,10 +58,11 @@ abstract class AbstractApiClientFactory implements ApiClientFactoryInterface
     public function create(
         ClientInterface $httpClient,
         Serializer $serializer,
+        UnlockTokenGenerator $unlockTokenGenerator = null,
         LoggerInterface $logger = null
     ) {
         $cls = $this->getApiClientClass();
-        $apiClient = new $cls($httpClient, $serializer);
+        $apiClient = new $cls($httpClient, $serializer, $unlockTokenGenerator);
 
         if (!is_null($logger)) {
             $apiClient->setLogger($logger);
@@ -72,5 +74,5 @@ abstract class AbstractApiClientFactory implements ApiClientFactoryInterface
     /**
      * {@inheritdoc}
      */
-    abstract public function createSimple($baseUri, ApiCredentials $credentials);
+    abstract public function createSimple($baseUri, ApiCredentials $credentials, $signKey = '');
 }

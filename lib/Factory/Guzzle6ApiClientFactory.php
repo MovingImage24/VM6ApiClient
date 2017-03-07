@@ -9,6 +9,7 @@ use MovingImage\Client\VM6\Entity\ApiCredentials;
 use MovingImage\Client\VM6\Manager\CredentialManager;
 use MovingImage\Client\VM6\Middleware\ApiKeyMiddleware;
 use MovingImage\Client\VM6\ApiClient\Guzzle6ApiClient;
+use MovingImage\Client\VM6\Util\UnlockTokenGenerator;
 
 /**
  * Class ApiClientFactory.
@@ -67,15 +68,21 @@ class Guzzle6ApiClientFactory extends AbstractApiClientFactory
         ], $options));
     }
 
+    public function createUnlockTokenGenerator($signKey)
+    {
+        return new UnlockTokenGenerator($signKey);
+    }
+
     /**
      * {@inheritdoc}
      */
-    public function createSimple($baseUri, ApiCredentials $credentials)
+    public function createSimple($baseUri, ApiCredentials $credentials, $signKey = '')
     {
         $credentialManager = $this->createCredentialManager($credentials);
         $apiKeyMiddleware = $this->createApiKeyMiddleware($credentialManager);
         $httpClient = $this->createHttpClient($baseUri, [$apiKeyMiddleware]);
+        $unlockTokenGenerator = $this->createUnlockTokenGenerator($signKey);
 
-        return $this->create($httpClient, $this->createSerializer());
+        return $this->create($httpClient, $this->createSerializer(), $unlockTokenGenerator);
     }
 }

@@ -3,6 +3,7 @@
 namespace MovingImage\Client\VM6\Interfaces;
 
 use MovingImage\Client\VM6\Criteria\VideoQueryCriteria;
+use MovingImage\Client\VM6\Entity\EmbedCode;
 use MovingImage\Client\VM6\Entity\Video;
 
 /**
@@ -23,4 +24,20 @@ interface ApiClientInterface
      * @return Video[]
      */
     public function getVideos(VideoQueryCriteria $criteria);
+
+    /**
+     * @param int $videoId
+     *
+     * @return Video
+     */
+    public function getVideo($videoId);
+
+    /**
+     * @param Video $video
+     * @param int   $skinId
+     * @param int   $type
+     *
+     * @return EmbedCode
+     */
+    public function getEmbedCode(Video $video, $skinId, $type = EmbedCode::TYPE_JAVASCRIPT);
 }
