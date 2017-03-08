@@ -142,6 +142,7 @@ class VideoQueryCriteria
     {
         $criteriaData = [
             'object_list_type' => self::LIST_TYPE_FULL,
+            'show_type' => 3,
         ];
 
         if (!empty($this->channels)) {
