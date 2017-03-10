@@ -188,6 +188,22 @@ class Video implements VideoInterface
     private $customMetaDatas;
 
     /**
+     * @Type ("array")
+     */
+    private $rubrics;
+
+    /**
+     * Returns the channel IDs of the video.
+     * Naming conventions were not invented when they called them 'rubrics' in VM6.
+     *
+     * @return array
+     */
+    public function getRubrics()
+    {
+        return $this->rubrics;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getId()
