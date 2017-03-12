@@ -26,6 +26,13 @@ interface ApiClientInterface
     public function getVideos(VideoQueryCriteria $criteria);
 
     /**
+     * @param VideoQueryCriteria $criteria
+     *
+     * @return int
+     */
+    public function getVideoCount(VideoQueryCriteria $criteria);
+
+    /**
      * @param int $videoId
      *
      * @return Video

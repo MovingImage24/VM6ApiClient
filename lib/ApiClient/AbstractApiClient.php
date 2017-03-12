@@ -4,6 +4,7 @@ namespace MovingImage\Client\VM6\ApiClient;
 
 use MovingImage\Client\VM6\Criteria\VideoQueryCriteria;
 use MovingImage\Client\VM6\Entity\EmbedCode;
+use MovingImage\Client\VM6\Entity\Response\VideoListCountResponse;
 use MovingImage\Client\VM6\Entity\Response\VideoListResponse;
 use MovingImage\Client\VM6\Entity\Video;
 use MovingImage\Client\VM6\Interfaces\ApiClientInterface;
@@ -28,6 +29,18 @@ abstract class AbstractApiClient extends AbstractCoreApiClient implements ApiCli
         ])->getBody(), VideoListResponse::class);
 
         return $videoListResponse->getVideos();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getVideoCount(VideoQueryCriteria $criteria)
+    {
+        $videoListCountResponse = $this->deserialize($this->makeRequest('GET', 'get_video_list_count.json', [
+            'query' => $criteria->getCriteriaData(),
+        ])->getBody(), VideoListCountResponse::class);
+
+        return $videoListCountResponse->getVideos();
     }
 
     /**
