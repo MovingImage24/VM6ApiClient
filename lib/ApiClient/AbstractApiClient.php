@@ -40,7 +40,7 @@ abstract class AbstractApiClient extends AbstractCoreApiClient implements ApiCli
             'query' => $criteria->getCriteriaData(),
         ])->getBody(), VideoListCountResponse::class);
 
-        return $videoListCountResponse->getVideos();
+        return $videoListCountResponse->getVideoCount();
     }
 
     /**
