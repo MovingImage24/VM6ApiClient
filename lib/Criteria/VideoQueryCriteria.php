@@ -204,16 +204,20 @@ class VideoQueryCriteria
         }
 
         if (!is_null($this->sortColumn)) {
-            $criteriaData['sort_by_column'] = $this->sortColumn;
+            if ($this->sortColumn == 'views') {
+                $criteriaData['sort'] = 2; // Sort by 'most popular'
+            } else {
+                $criteriaData['sort_by_column'] = $this->sortColumn;
 
-            if (!is_null($this->sortByColumnOrder)) {
-                // Put this here because providing this field doesn't
-                // do anything if you don't provide 'sort_by_column'
-                if (!in_array($this->sortByColumnOrder, array(self::SORT_ORDER_ASC, self::SORT_ORDER_DESC))) {
-                    throw new \Exception('Invalid sort order provided.');
+                if (!is_null($this->sortByColumnOrder)) {
+                    // Put this here because providing this field doesn't
+                    // do anything if you don't provide 'sort_by_column'
+                    if (!in_array($this->sortByColumnOrder, array(self::SORT_ORDER_ASC, self::SORT_ORDER_DESC))) {
+                        throw new \Exception('Invalid sort order provided.');
+                    }
+
+                    $criteriaData['sort_by_column_order'] = $this->sortByColumnOrder;
                 }
-
-                $criteriaData['sort_by_column_order'] = $this->sortByColumnOrder;
             }
         }
 
