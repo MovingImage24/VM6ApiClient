@@ -48,6 +48,30 @@ class VideoQueryCriteria
     private $sortByColumnOrder = null;
 
     /**
+     * @var string|null
+     */
+    private $searchTerm = null;
+
+    /**
+     * @param $searchTerm
+     * @return $this
+     */
+    public function setSearchTerm($searchTerm)
+    {
+        $this->searchTerm = $searchTerm;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getSearchTerm()
+    {
+        return $this->searchTerm;
+    }
+
+    /**
      * Filter video list by a single channel ID - this overrides any
      * previously set criterias to filter by multiple channel IDs if called.
      *
@@ -219,6 +243,10 @@ class VideoQueryCriteria
                     $criteriaData['sort_by_column_order'] = $this->sortByColumnOrder;
                 }
             }
+        }
+
+        if(!is_null($this->searchTerm)) {
+            $criteriaData['searchstring'] = $this->searchTerm;
         }
 
         if (!is_null($this->page)) {
