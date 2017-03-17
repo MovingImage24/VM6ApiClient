@@ -3,6 +3,7 @@
 namespace MovingImage\Client\VM6\Interfaces;
 
 use MovingImage\Client\VM6\Criteria\VideoQueryCriteria;
+use MovingImage\Client\VM6\Entity\Channel;
 use MovingImage\Client\VM6\Entity\EmbedCode;
 use MovingImage\Client\VM6\Entity\Video;
 
@@ -47,4 +48,12 @@ interface ApiClientInterface
      * @return EmbedCode
      */
     public function getEmbedCode(Video $video, $skinId, $type = EmbedCode::TYPE_JAVASCRIPT);
+
+    /**
+     * Returns a channel containing all sub channels.
+     *
+     * @param int $channelId
+     * @return Channel
+     */
+    public function getChannels($channelId);
 }

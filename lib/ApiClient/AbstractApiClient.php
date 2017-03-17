@@ -3,6 +3,8 @@
 namespace MovingImage\Client\VM6\ApiClient;
 
 use MovingImage\Client\VM6\Criteria\VideoQueryCriteria;
+use MovingImage\Client\VM6\Entity\Channel;
+use MovingImage\Client\VM6\Entity\ChannelList;
 use MovingImage\Client\VM6\Entity\EmbedCode;
 use MovingImage\Client\VM6\Entity\Response\VideoListCountResponse;
 use MovingImage\Client\VM6\Entity\Response\VideoListResponse;
@@ -20,10 +22,18 @@ abstract class AbstractApiClient extends AbstractCoreApiClient implements ApiCli
     use LoggerAwareTrait;
 
     /**
+     * @var ChannelList
+     */
+    private $channelList;
+
+    /**
      * {@inheritdoc}
      */
     public function getVideos(VideoQueryCriteria $criteria)
     {
+        if ($criteria->isIncludeSubChannels()) {
+            $criteria->setChannelIds($this->getChannelIdsInclusiveSubChannels($criteria->getChannelIds()));
+        }
         $videoListResponse = $this->deserialize($this->makeRequest('GET', 'get_video_object_list.json', [
             'query' => $criteria->getCriteriaData(),
         ])->getBody(), VideoListResponse::class);
@@ -32,10 +42,58 @@ abstract class AbstractApiClient extends AbstractCoreApiClient implements ApiCli
     }
 
     /**
+     * Returns ChannelList containing all channels belonging to the video manager.
+     *
+     * @return ChannelList
+     */
+    private function getChannelList()
+    {
+        if (empty($this->channelList)) {
+            $response = $this->makeRequest('GET', 'get_rubric_object_list.json', []);
+            $this->channelList = $this->deserialize($response->getBody()->getContents(), ChannelList::class);
+        }
+
+        return $this->channelList;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getChannels($channelId = ChannelList::ROOT_CHANNEL_ID)
+    {
+        return $this->getChannelList()->getChannel($channelId);
+    }
+
+    /**
+     * Returns an array containing all channel IDs inclusive sub channels.
+     *
+     * @param $channelIds
+     * @return array
+     */
+    private function getChannelIdsInclusiveSubChannels($channelIds)
+    {
+        $subChannelIds = [];
+
+        foreach ($channelIds as $channelId) {
+            $subChannels = $this->getChannelList()->getChildren($channelId);
+            $subChannelIds = array_merge($subChannelIds, $subChannels->map(function (Channel $channel) {
+                return $channel->getId();
+            })->toArray());
+        }
+
+        return empty($subChannelIds)
+            ? $channelIds
+            : array_merge($channelIds, $this->getChannelIdsInclusiveSubChannels($subChannelIds));
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getVideoCount(VideoQueryCriteria $criteria)
     {
+        if ($criteria->isIncludeSubChannels()) {
+            $criteria->setChannelIds($this->getChannelIdsInclusiveSubChannels($criteria->getChannelIds()));
+        }
         $videoListCountResponse = $this->deserialize($this->makeRequest('GET', 'get_video_list_count.json', [
             'query' => $criteria->getCriteriaData(),
         ])->getBody(), VideoListCountResponse::class);

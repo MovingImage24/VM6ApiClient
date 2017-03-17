@@ -53,6 +53,30 @@ class VideoQueryCriteria
     private $searchTerm = null;
 
     /**
+     * @var bool
+     */
+    private $includeSubChannels = true;
+
+    /**
+     * @param bool $includeSubChannels
+     * @return $this
+     */
+    public function setIncludeSubChannels($includeSubChannels)
+    {
+        $this->includeSubChannels = $includeSubChannels;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIncludeSubChannels()
+    {
+        return $this->includeSubChannels;
+    }
+
+    /**
      * @param $searchTerm
      * @return $this
      */
@@ -108,6 +132,14 @@ class VideoQueryCriteria
         $this->channels = $channelIds;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getChannelIds()
+    {
+        return $this->channels;
     }
 
     /**
@@ -245,7 +277,7 @@ class VideoQueryCriteria
             }
         }
 
-        if(!is_null($this->searchTerm)) {
+        if (!is_null($this->searchTerm)) {
             $criteriaData['searchstring'] = $this->searchTerm;
         }
 
