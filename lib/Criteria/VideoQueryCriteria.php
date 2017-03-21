@@ -17,6 +17,12 @@ class VideoQueryCriteria
     const SORT_ORDER_DESC = 0;
     const SORT_ORDER_ASC = 1;
 
+    const PUBLICATION_STATES = [
+        'published' => 1,
+        'not_published' => 2,
+        'all' => 3
+    ];
+
     /**
      * @var array
      */
@@ -56,6 +62,38 @@ class VideoQueryCriteria
      * @var bool
      */
     private $includeSubChannels = true;
+
+    /**
+     * @var int|null
+     */
+    private $publicationState = null;
+
+    /**
+     * Possible values: 'published', 'not_published', 'all'
+     *
+     * @param $publicationState
+     * @throws \Exception
+     */
+    public function setPublicationState($publicationState)
+    {
+        if (array_key_exists($publicationState, self::PUBLICATION_STATES)) {
+            $this->publicationState = self::PUBLICATION_STATES[$publicationState];
+        } else {
+            throw new \Exception('publication state is unknown');
+        }
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPublicationState()
+    {
+        $states = array_flip(self::PUBLICATION_STATES);
+
+        return is_null($this->publicationState)
+            ? null
+            : $states[$this->publicationState];
+    }
 
     /**
      * @param bool $includeSubChannels
@@ -244,8 +282,11 @@ class VideoQueryCriteria
     {
         $criteriaData = [
             'object_list_type' => self::LIST_TYPE_FULL,
-            'show_type' => 3,
         ];
+
+        if (!empty($this->publicationState)) {
+            $criteriaData['show_type'] = $this->publicationState;
+        }
 
         if (!empty($this->channels)) {
             $criteriaData['rubric_list'] = implode(',', $this->channels);
