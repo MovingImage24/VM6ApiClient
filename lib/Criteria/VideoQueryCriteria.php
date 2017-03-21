@@ -90,7 +90,9 @@ class VideoQueryCriteria
     {
         $states = array_flip(self::PUBLICATION_STATES);
 
-        return $states[$this->publicationState];
+        return is_null($this->publicationState)
+            ? null
+            : $states[$this->publicationState];
     }
 
     /**
