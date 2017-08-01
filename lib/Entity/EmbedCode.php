@@ -3,13 +3,14 @@
 namespace MovingImage\Client\VM6\Entity;
 
 use JMS\Serializer\Annotation\Type;
+use MovingImage\Meta\Interfaces\EmbedCodeInterface;
 
 /**
  * Class EmbedCode.
  *
  * @author Ruben Knol <ruben.knol@movingimage.com>
  */
-class EmbedCode
+class EmbedCode implements EmbedCodeInterface
 {
     const TYPE_JAVASCRIPT = 1;
     const TYPE_IFRAME = 2;
