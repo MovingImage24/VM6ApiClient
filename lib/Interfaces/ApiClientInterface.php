@@ -44,10 +44,11 @@ interface ApiClientInterface
      * @param Video $video
      * @param int   $skinId
      * @param int   $type
+     * @param bool  $tokenProtected
      *
      * @return EmbedCode
      */
-    public function getEmbedCode(Video $video, $skinId, $type = EmbedCode::TYPE_JAVASCRIPT);
+    public function getEmbedCode(Video $video, $skinId, $type = EmbedCode::TYPE_JAVASCRIPT, $tokenProtected = false);
 
     /**
      * Returns a channel containing all sub channels.
