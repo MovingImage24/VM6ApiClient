@@ -36,7 +36,7 @@ class EmbedCode implements EmbedCodeInterface
     private $hiddenControlBar = false;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getCode($className = 'video-player')
     {
@@ -58,8 +58,7 @@ class EmbedCode implements EmbedCodeInterface
             }
         }
 
-        if ($this->hiddenControlBar)
-        {
+        if ($this->hiddenControlBar) {
             $code = $this->setHiddenControlBarAttribute($code);
         }
 

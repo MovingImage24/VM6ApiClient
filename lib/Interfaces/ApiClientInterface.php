@@ -54,6 +54,7 @@ interface ApiClientInterface
      * Returns a channel containing all sub channels.
      *
      * @param int $channelId
+     *
      * @return Channel
      */
     public function getChannels($channelId);

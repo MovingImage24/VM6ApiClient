@@ -8,8 +8,7 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Exclude;
 
 /**
- * Class Channel
- * @package MovingImage\Client\VM6\Entity
+ * Class Channel.
  *
  * @author Robert Szeker <robert.szeker@movingimage.com>
  */
@@ -33,6 +32,7 @@ class Channel
 
     /**
      * @Exclude
+     *
      * @var Channel
      */
     private $parent = null;
@@ -54,9 +54,6 @@ class Channel
         return $this->children;
     }
 
-    /**
-     * @return null
-     */
     public function getName()
     {
         return $this->name;
@@ -64,17 +61,16 @@ class Channel
 
     /**
      * @param null $name
+     *
      * @return Channel
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
-    /**
-     * @return null
-     */
     public function getParent()
     {
         return $this->parent;
@@ -82,17 +78,16 @@ class Channel
 
     /**
      * @param null $parent
+     *
      * @return Channel
      */
     public function setParent($parent)
     {
         $this->parent = $parent;
+
         return $this;
     }
 
-    /**
-     * @return null
-     */
     public function getId()
     {
         return $this->id;
@@ -100,11 +95,13 @@ class Channel
 
     /**
      * @param null $id
+     *
      * @return Channel
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -118,6 +115,7 @@ class Channel
 
     /**
      * @param int $id
+     *
      * @return $this
      */
     public function setParentId($id)

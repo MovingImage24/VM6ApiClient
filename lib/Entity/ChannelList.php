@@ -6,11 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\PostDeserialize;
-use MovingImage\Client\VM6\Entity\Channel;
 
 /**
- * Class ChannelList
- * @package MovingImage\Client\VM6\Entity
+ * Class ChannelList.
  *
  * @author Robert Szeker <robert.szeker@movingimage.com>
  */
@@ -21,13 +19,16 @@ class ChannelList
     /**
      * @Type("ArrayCollection<MovingImage\Client\VM6\Entity\Channel>")
      * @SerializedName("rubriclist")
+     *
      * @var ArrayCollection
      */
     private $channelList;
 
     /**
      * @PostDeserialize
+     *
      * @param int $parentId
+     *
      * @return ArrayCollection
      */
     private function buildChannelTree($parentId = self::ROOT_CHANNEL_ID)
@@ -44,9 +45,10 @@ class ChannelList
     }
 
     /**
-     * Returns list of channels, which are the children of $parentId
+     * Returns list of channels, which are the children of $parentId.
      *
      * @param $parentId
+     *
      * @return ArrayCollection
      */
     public function getChildren($parentId)
@@ -58,6 +60,7 @@ class ChannelList
 
     /**
      * @param int $channelId
+     *
      * @return Channel
      */
     public function getChannel($channelId = self::ROOT_CHANNEL_ID)

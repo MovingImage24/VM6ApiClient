@@ -68,6 +68,7 @@ abstract class AbstractApiClient extends AbstractCoreApiClient implements ApiCli
      * Returns an array containing all channel IDs inclusive sub channels.
      *
      * @param $channelIds
+     *
      * @return array
      */
     private function getChannelIdsInclusiveSubChannels($channelIds)
