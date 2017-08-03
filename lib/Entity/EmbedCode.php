@@ -31,7 +31,12 @@ class EmbedCode implements EmbedCodeInterface
     private $unlockToken;
 
     /**
-     * @return string
+     * @var bool
+     */
+    private $hiddenControlBar = false;
+
+    /**
+     * @inheritdoc
      */
     public function getCode($className = 'video-player')
     {
@@ -53,11 +58,51 @@ class EmbedCode implements EmbedCodeInterface
             }
         }
 
+        if ($this->hiddenControlBar)
+        {
+            $code = $this->setHiddenControlBarAttribute($code);
+        }
+
         return $code;
     }
 
     public function setUnlockToken($token)
     {
         $this->unlockToken = $token;
+    }
+
+    /**
+     * If $hidden is true, the returned embedCode from getCode() contains an html attribute
+     * which is necessary to hide the control bar in a HTML5 player.
+     *
+     * Furthermore to make the control bar really hidden,
+     * following Javascript object has to be set on the page which contains the player.
+     *
+     *  var miPlayerPlugins = {
+     *      playerAttributeSet: {
+     *          enabled: true,
+     *          prefix: 'data-'
+     *      }
+     *  };
+     *
+     * Method doesn't exist in EmbedCodeInterface, since this method doesn't make sense for VMPro.
+     *
+     * @param bool $hidden
+     */
+    public function setHiddenControlBar($hidden)
+    {
+        $this->hiddenControlBar = $hidden;
+    }
+
+    /**
+     * Adds an attribute inside the first div which is necessary to hide the control bar.
+     *
+     * @param string $html
+     *
+     * @return mixed
+     */
+    private function setHiddenControlBarAttribute($html)
+    {
+        return preg_replace('/>/', ' data-control-bar-hidden="true">', $html, 1);
     }
 }
