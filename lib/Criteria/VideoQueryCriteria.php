@@ -20,7 +20,7 @@ class VideoQueryCriteria
     const PUBLICATION_STATES = [
         'published' => 1,
         'not_published' => 2,
-        'all' => 3
+        'all' => 3,
     ];
 
     /**
@@ -69,9 +69,10 @@ class VideoQueryCriteria
     private $publicationState = null;
 
     /**
-     * Possible values: 'published', 'not_published', 'all'
+     * Possible values: 'published', 'not_published', 'all'.
      *
      * @param $publicationState
+     *
      * @throws \Exception
      */
     public function setPublicationState($publicationState)
@@ -97,6 +98,7 @@ class VideoQueryCriteria
 
     /**
      * @param bool $includeSubChannels
+     *
      * @return $this
      */
     public function setIncludeSubChannels($includeSubChannels)
@@ -116,6 +118,7 @@ class VideoQueryCriteria
 
     /**
      * @param $searchTerm
+     *
      * @return $this
      */
     public function setSearchTerm($searchTerm)
@@ -138,7 +141,9 @@ class VideoQueryCriteria
      * previously set criterias to filter by multiple channel IDs if called.
      *
      * @param int $channelId
+     *
      * @throws \Exception
+     *
      * @return $this
      */
     public function setChannelId($channelId)
@@ -156,7 +161,9 @@ class VideoQueryCriteria
      * Filter video list by one or multiple channel IDs.
      *
      * @param int[] $channelIds
+     *
      * @throws \Exception
+     *
      * @return $this
      */
     public function setChannelIds(array $channelIds)
@@ -184,7 +191,9 @@ class VideoQueryCriteria
      * Limit result set by a certain amount of videos.
      *
      * @param int $limit
+     *
      * @throws \Exception
+     *
      * @return $this
      */
     public function setLimit($limit)
@@ -202,7 +211,9 @@ class VideoQueryCriteria
      * Set offset of video list - this requires 'limit' to be set.
      *
      * @param int $offset
+     *
      * @throws \Exception
+     *
      * @return $this
      */
     public function setOffset($offset)
@@ -233,7 +244,7 @@ class VideoQueryCriteria
 
     /**
      * Set the column on which to sort.
-     * Possible values are:
+     * Possible values are:.
      *
      * - id
      * - name
@@ -244,6 +255,7 @@ class VideoQueryCriteria
      * - versiondate
      *
      * @param string $column
+     *
      * @return $this
      */
     public function setSortColumn($column)
@@ -255,9 +267,10 @@ class VideoQueryCriteria
 
     /**
      * Set how to sort.
-     * Allowed values: 'desc', 'asc'
+     * Allowed values: 'desc', 'asc'.
      *
      * @param string $order
+     *
      * @return $this
      */
     public function setSortByColumnOrder($order)
@@ -276,6 +289,7 @@ class VideoQueryCriteria
 
     /**
      * @throws \Exception
+     *
      * @return array
      */
     public function getCriteriaData()
