@@ -193,6 +193,13 @@ class Video implements VideoInterface
     private $rubrics;
 
     /**
+     * @Type ("string")
+     *
+     * @var string
+     */
+    private $internalComment;
+
+    /**
      * Returns the channel IDs of the video.
      * Naming conventions were not invented when they called them 'rubrics' in VM6.
      *
@@ -348,5 +355,13 @@ class Video implements VideoInterface
     public function getViews()
     {
         return $this->views;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInternalComment()
+    {
+        return $this->internalComment;
     }
 }
